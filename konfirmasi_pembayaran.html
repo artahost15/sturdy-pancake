@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Konfirmasi Pembayaran - Arta Host</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    main {
+      padding: 2em;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2 {
+      color: #4CAF50;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Konfirmasi Pembayaran</h1>
+    <p>Terima kasih telah melakukan pembayaran ke Arta Host</p>
+  </header>
+  <main>
+    <h2>Isi Formulir Berikut</h2>
+    <form onsubmit="sendToWhatsApp(); return false;">
+      <label>Nama Pembeli:</label>
+      <input type="text" id="nama" required placeholder="Nama kamu">
+
+      <label>Produk yang Dibeli:</label>
+      <select id="produk" required>
+        <option value="">-- Pilih Produk --</option>
+        <option>RESELLER PANEL - Rp5.000</option>
+        <option>ADMIN PANEL - Rp10.000</option>
+        <option>PANEL 5GB - Rp3.000</option>
+        <option>PANEL 6GB - Rp4.000</option>
+        <option>PANEL 7GB - Rp5.000</option>
+        <option>PANEL 8GB - Rp6.000</option>
+        <option>PANEL 9GB - Rp7.000</option>
+        <option>PANEL UNLI - Rp8.000</option>
+        <option>MURID NOKOS - Rp5.000</option>
+        <option>MURID SUNTIK - Rp7.000</option>
+      </select>
+
+      <label>Metode Pembayaran:</label>
+      <select id="metode" required>
+        <option value="DANA">DANA</option>
+        <option value="QRIS">QRIS</option>
+      </select>
+
+      <label>Catatan (Opsional):</label>
+      <textarea id="catatan" rows="3" placeholder="Contoh: Saya sudah transfer jam 14.00 WIB"></textarea>
+
+      <button type="submit">Kirim Konfirmasi via WhatsApp</button>
+    </form>
+  </main>
+
+  <script>
+    function sendToWhatsApp() {
+      var nama = document.getElementById("nama").value;
+      var produk = document.getElementById("produk").value;
+      var metode = document.getElementById("metode").value;
+      var catatan = document.getElementById("catatan").value;
+
+      var pesan = `Saya telah melakukan pembayaran.%0ANama: ${nama}%0AProduk: ${produk}%0AVia: ${metode}%0ACatatan: ${catatan}`;
+      var url = "https://wa.me/6285837030096?text=" + pesan;
+
+      window.open(url, "_blank");
+    }
+  </script>
+</body>
+</html>
